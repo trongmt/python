@@ -90,6 +90,21 @@ This should solve your problem :)
 Refer: [typeerror-method-takes-1-positional-argument-but-2-were-given](https://stackoverflow.com/questions/23944657/typeerror-method-takes-1-positional-argument-but-2-were-given)
 
 
+## TypeError: Cannot interpret '<attribute 'dtype' of 'numpy.generic' objects>' as a data type
+```py
+#Reproducing code example:
+import numpy as np
+<< your code here >>
+import numpy as np
+import pandas as pd
+df=pd.read_csv('link')
+df.info() and df.describe() gives error as "TypeError: Cannot interpret '<attribute 'dtype' of 'numpy.generic' objects>' as a data type" and also plotting(df.plot()) gives same error.
+```
+`Accepted Answer`
+```
+There is a unfortuate incompatibility with old pandas and 1.20. Updating pandas to a newer version should fix it, see also pandas-dev/pandas#39520 (comment)
 
-
+Updating to pandas>=1.0.5 should solve it. Supposedly also pandas==0.25.3 works. If you are stuck with pandas 0.24.x you may not be able to usse numpy 1.20.x though, unfortunaly. In that case, use numpy<1.20
+```
+Refer: [typeerror-cannot-interpret-attribute-dtype-of-numpy-generic-objects-as-a-data-type](https://lifesaver.codes/answer/typeerror-cannot-interpret-attribute-dtype-of-numpy-generic-objects-as-a-data-type-18355)
 
